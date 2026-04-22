@@ -9,6 +9,9 @@
   <Folder Name="/Infraestructure/">
     <Project Path="Infraestructure/Infraestructure/Infraestructure.csproj" Id="70e98595-36bb-4ffe-a4e7-32c7b51c1b8d" />
   </Folder>
+  <Folder Name="/IOC/">
+    <Project Path="IOC/IOC.csproj" />
+  </Folder>
   <Folder Name="/Presentation/">
     <Project Path="Presentation/Calculator.Web/Calculator.Web.csproj" Id="3d39d173-38e0-4831-a4d9-91d7818e579e" />
   </Folder>

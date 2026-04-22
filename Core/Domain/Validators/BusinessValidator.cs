@@ -3,9 +3,9 @@ namespace Domain.Validators;
 using Domain.Common;
 using Domain.Rules;
 
-
 public class BusinessValidator : IBusinessValidator
 {
+    private const decimal MaxWeight = 70m;
     private readonly ITariffRule[] _availableRules;
 
     public BusinessValidator()
@@ -25,6 +25,14 @@ public class BusinessValidator : IBusinessValidator
             throw new BusinessException(
                 BusinessErrorCode.InvalidWeight,
                 "El peso del envío debe ser mayor a cero."
+            );
+        }
+
+        if (weight > MaxWeight)
+        {
+            throw new BusinessException(
+                BusinessErrorCode.InvalidWeight,
+                $"El peso del envío no puede exceder {MaxWeight} kg. El comercio electrónico no permite envíos superiores a este límite."
             );
         }
     }
