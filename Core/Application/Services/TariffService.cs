@@ -7,7 +7,7 @@ using Domain.ReadModels;
 using Domain.Rules;
 using Domain.Validators;
 
-public class TariffService
+public class TariffService : ITariffService
 {
     private readonly ICountryRepository _countryRepository;
     private readonly IBusinessValidator _businessValidator;

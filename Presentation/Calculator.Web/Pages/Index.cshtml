@@ -17,9 +17,10 @@
                             <label for="countryId" class="form-label fw-bold">País de Destino <span class="text-danger">*</span></label>
                             <select class="form-select form-select-lg" id="countryId" name="countryId" required aria-label="Seleccione un país">
                                 <option value="">-- Seleccione un país --</option>
-                                <option value="1">India - $5.00 USD/kg</option>
-                                <option value="2">US - $8.00 USD/kg</option>
-                                <option value="3">UK - $10.00 USD/kg</option>
+                                @foreach (var country in Model.Countries)
+                                {
+                                    <option value="@country.Id">@country.Name - $@country.PriceSend.ToString("F2") USD/kg</option>
+                                }
                             </select>
                             <div class="invalid-feedback d-block" id="countryError"></div>
                         </div>

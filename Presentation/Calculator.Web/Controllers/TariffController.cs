@@ -1,5 +1,5 @@
+using Application.Abstractions;
 using Application.Dtos;
-using Application.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Calculator.Web.Controllers;
@@ -8,9 +8,9 @@ namespace Calculator.Web.Controllers;
 [ApiController]
 public class TariffController : ControllerBase
 {
-    private readonly TariffService _tariffService;
+    private readonly ITariffService _tariffService;
 
-    public TariffController(TariffService tariffService)
+    public TariffController(ITariffService tariffService)
     {
         _tariffService = tariffService;
     }
