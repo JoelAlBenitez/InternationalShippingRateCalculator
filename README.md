@@ -1,101 +1,148 @@
-🌍 International Shipping Rate Calculator
+# 🌍 International Shipping Rate Calculator
 
-Sistema avanzado para el cálculo automatizado de tarifas de envío internacionales, diseñado bajo principios de Clean Architecture y Domain-Driven Design (DDD) para garantizar escalabilidad, mantenibilidad y resiliencia en entornos de alto rendimiento.
+> Sistema para el cálculo automatizado de tarifas de envío internacional, diseñado bajo principios de **Clean Architecture** y **Domain-Driven Design (DDD)**.
 
-🚀 Descripción del Proyecto
+---
 
-El sistema surge de la necesidad de una empresa de comercio electrónico de automatizar el cálculo de costos de envío internacionales. Permite a los clientes ingresar el peso de sus paquetes y seleccionar un destino, obteniendo de forma instantánea el costo basado en reglas de negocio específicas para cada región.
+## 🚀 Descripción General
 
-🛠 Reglas de Negocio Aplicadas
+Este sistema permite a los usuarios calcular el costo de envío internacional de un paquete ingresando:
 
-El cálculo se realiza mediante un motor de reglas desacoplado que aplica las siguientes tarifas:
+- 📦 Peso del paquete  
+- 🌎 País de destino  
 
-🇮🇳 India: Tarifa = Peso × 5 USD.
+El sistema procesa estos datos y devuelve el costo basado en reglas de negocio definidas.
 
-🇺🇸 Estados Unidos (US): Tarifa = Peso × 8 USD.
+---
 
-🇬🇧 Reino Unido (UK): Tarifa = Peso × 10 USD.
+## 🎯 Problema que Resuelve
 
-🏗 Arquitectura del Sistema
+El cálculo manual de envíos internacionales suele ser:
 
-La solución implementa una Arquitectura en Capas con Inversión de Dependencia (DI) para evitar el acoplamiento y facilitar el mantenimiento.
+- Propenso a errores ❌  
+- Poco escalable ❌  
+- Inconsistente ❌  
 
-📁 Distribución de Capas
+### ✔ Solución
 
-Capa de Dominio (Domain):
+- Automatización del cálculo  
+- Reglas centralizadas  
+- Escalabilidad para nuevos países  
 
-Contiene las entidades POCO (Country, Shipment).
+---
 
-Implementa los Validadores de Negocio y las interfaces de reglas.
+## 🧠 Reglas de Negocio
 
-Define los Modelos de Lectura (Read Models) y códigos de error comunes.
+| País | Fórmula |
+|------|--------|
+| 🇮🇳 India | Peso × 5 USD |
+| 🇺🇸 Estados Unidos | Peso × 8 USD |
+| 🇬🇧 Reino Unido | Peso × 10 USD |
 
-Capa de Aplicación (Application):
+✔ Implementadas bajo el principio **Open/Closed**  
+✔ Extensibles sin modificar código existente  
 
-Contiene las Interfaces de Repositorio (Contratos).
+---
 
-Implementa el TariffService para la orquestación de la lógica.
+## 🏗 Arquitectura del Sistema
 
-Gestiona los Validadores de Input y la transformación de datos.
+El sistema sigue una arquitectura en capas:
 
-Capa de Infraestructura (Infrastructure):
+### 🖥️ Presentación
+- Razor Pages
+- Formulario de entrada
+- Visualización de resultados
 
-Implementa la persistencia mediante Entity Framework Core.
+### ⚙️ Aplicación
+- `TariffService`
+- Orquestación del flujo
 
-Contiene el ShippingDbContext y la implementación del repositorio.
+### 🧩 Dominio
+- Entidades (`Shipment`, `Country`)
+- Reglas (`ITariffRule`)
+- Cálculo (`TariffCalculator`)
 
-Configura la conexión a SQL Server mediante secretos de usuario.
+### 🗄️ Infraestructura
+- `CountryRepository`
+- SQL Server
 
-Capa de Presentación (Presentation):
+---
 
-Implementada como una Minimal API (o Razor Pages según configuración) para máxima eficiencia.
+## 🔄 Flujo del Sistema
 
-Diseño basado en las 10 Heurísticas de Nielsen para asegurar una excelente UI/UX.
+---
+## 📸 Evidencias del Sistema
 
-📸 Evidencias de Diseño y Funcionamiento
-
-A continuación se presentan las capturas de pantalla que validan la arquitectura y el flujo operativo del sistema (ubicadas en /Screenshots):
-
-Vista General del Sistema
-
-Arquitectura de Capas
-
-Diagrama de Componentes
-
-Interfaz de Usuario
-
-Validación de Reglas
-
-Resultados del Cálculo
+Las siguientes capturas validan el funcionamiento del sistema y se encuentran en:
 
 
-⚙️ Configuración y Despliegue
+---
 
-🗄️ Base de Datos
+### 🖥️ Interfaz Inicial del Sistema
 
-El sistema utiliza SQL Server con el nombre InternationalShippingRateCalculator.
+![UI](Screenshots/UIFirstSystem.png)
 
-El script de creación se encuentra en la carpeta: ./database/script.sql.
+📌 Permite al usuario ingresar el peso del paquete y seleccionar el país de destino.
 
-Servidor recomendado: (localdb)\MSSQLLocalDB.
+---
 
-🔐 Seguridad y Conexión
+### 📊 Reglas de Negocio
 
-La cadena de conexión no está en el código. Se debe configurar vía User-Secrets o en el appsettings.json local:
+![Rules](Screenshots/RuleBussines.png)
 
+📌 Representa cómo el sistema aplica las tarifas según el país seleccionado.
+
+---
+
+### 💰 Resultado del Cálculo
+
+![Result](Screenshots/ExampleCalculeResul.png)
+
+📌 Muestra el costo final calculado en base a los datos ingresados.
+
+---
+
+## 🗄️ Base de Datos
+
+El sistema utiliza SQL Server para la persistencia de datos.
+
+### 📁 Ubicación
+
+
+### 📌 Contenido del Script
+
+- Creación de la base de datos  
+- Tabla de países  
+- Tarifas por país  
+
+---
+
+## ⚙️ Instalación y Ejecución
+
+### 🔧 Requisitos
+
+- .NET 6 o superior  
+- SQL Server / LocalDB  
+- Visual Studio / VS Code  
+
+---
+
+### 📥 Pasos
+
+#### 1. Clonar el repositorio
+
+#### Configurar la Base de Datos
+
+Ejecutar el script:
+/database/script.sql
+
+#### Configurar conexión
+
+Editar appsettings.json:
 "ConnectionStrings": {
   "DefaultConnection": "Server=(localdb)\\MSSQLLocalDB;Database=InternationalShippingRateCalculator;Trusted_Connection=True;"
 }
 
+#### Ejecutar el proyecto
+dotnet run
 
-🎯 Objetivos de la Solución
-
-Desacoplamiento: Las capas se comunican exclusivamente mediante abstracciones.
-
-POCO: Entidades de dominio libres de dependencias de persistencia.
-
-Resiliencia: Manejo robusto de excepciones (try-catch) para evitar caídas del sistema.
-
-Mantenibilidad: Inversión de Control (IoC) centralizada para la carga de dependencias.
-
-Desarrollado por: Joel Alberto Benitez Varela (2025-1049)
